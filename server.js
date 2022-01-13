@@ -19,10 +19,9 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 
 app.use('/', indexRouter);
-const URI = process.env.DATABASE_URL;
-console.log(URI);
+
 //db conecct
-mongoose.connect("mongodb://localhost/mybrary");
+mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', MONGO_URI => console.log('Connected to Database'))
