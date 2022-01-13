@@ -4,9 +4,7 @@ const indexRouter = require('./routes/index');
 const mongoose = require('mongoose');
 
 
-if (process.env.NODE_ENV === "production") {
-    require('dotenv').config();
-}
+require('dotenv').config({ silent: process.env.NODE_ENV === 'production' })
 
 
 const app = express();
