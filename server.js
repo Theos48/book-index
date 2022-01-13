@@ -1,10 +1,14 @@
+if ( process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const indexRouter = require('./routes/index');
 const mongoose = require('mongoose');
+const { process_params } = require('express/lib/router');
 
-
-require('dotenv').config({ silent: process.env.NODE_ENV === 'production' })
+// require('dotenv').config({ silent: process.env.NODE_ENV === 'production' })
 
 
 const app = express();
