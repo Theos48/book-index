@@ -1,11 +1,15 @@
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+
+//
+const indexRouter = require('./routes/index');
+const authorsRouter = require('./routes/authors');
+
+//Si causa error en heroku mover al inicio del documento
 if ( process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
-
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const indexRouter = require('./routes/index');
-const mongoose = require('mongoose');
 
 const app = express();
 
@@ -19,6 +23,7 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 
 app.use('/', indexRouter);
+app.use('/authors', authorsRouter);
 
 //db conecct
 mongoose.connect(process.env.DATABASE_URL);
